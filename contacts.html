@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" href="css/style.min.css?_v=20240806133732">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240808184129">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -36,7 +36,7 @@
 					<li>
 						<a href="#" target="_blank" class="header__nav-btn">О нас</a>
 					</li>
-					<li>
+					<li data-da=".header__connection,993,0" class="header__title-btn-contacts">
 						<a href="#" target="_blank" class="header__nav-btn">Контакты</a>
 					</li>
 					<li>
@@ -169,46 +169,51 @@
 			</div>
 		</section>
 
-		<div class="contacts">
-			<div class="container">
-				<div class="section-head">
-					<img src="img/logos/logo-red.svg" alt="logo" class="section-head__logo" />
-					<h2 class="title title-1">Контакты</h2>
-					<a href="#" target="_blank" class="section-head__btn">Все</a>
+		<section class="contacts-main">
+			<div class="container contacts-main__container">
+				<div class="contacts-main__body">
+					<div class="contacts-main__item">
+						<h3 class="contacts-main__title">Для покупателей</h3>
+						<div class="contacts-main__item-head">
+							<div class="contacts-main__item-block">
+								<a href="tel:+79859228800" class="contacts-main__item-link">+7 (985) 922-88-00</a>
+								<p class="contacts-main__subcontent">Пн-Пт с 8:00 до 17:00</p>
+							</div>
+							<div class="contacts-main__item-block">
+								<a href="mailto:info@oyyo-organic.ru" class="contacts-main__item-link">info@oyyo-organic.ru</a>
+								<a href="mailto:info@oyyo-organic.ru" class="contacts-main__item-btn">Написать письмо</a>
+							</div>
+						</div>
+						<p class="contacts-main__item-content">
+							г. Москва, ул.Ветошный переулок, 9 ТЦ Никольский пассаж
+						</p>
+					</div>
+					<div class="contacts-main__item">
+						<h3 class="contacts-main__title">Для покупателей</h3>
+						<div class="contacts-main__item-head">
+							<div class="contacts-main__item-block">
+								<a href="tel:+79859228800" class="contacts-main__item-link">+7 (985) 922-88-00</a>
+								<p class="contacts-main__subcontent">Пн-Пт с 8:00 до 17:00</p>
+							</div>
+							<div class="contacts-main__item-block">
+								<a href="mailto:info@oyyo-organic.ru" class="contacts-main__item-link">info@oyyo-organic.ru</a>
+								<a href="mailto:info@oyyo-organic.ru" class="contacts-main__item-btn">Написать письмо</a>
+							</div>
+						</div>
+						<p class="contacts-main__item-content">
+							г. Москва, ул.Ветошный переулок, 9 ТЦ Никольский пассаж
+						</p>
+					</div>
 				</div>
-				<ul class="list contacts__list">
-					<li class="contacts__item">
-						<h5 class="contacts__item-title">Телефон</h5>
-						<span class="contacts__item-line"></span>
-						<div class="contacts__item-info">
-							<a href="#" class="contacts__item-link">+7 (985) 922-88-00</a>
-							<p class="contacts__item-content">Пн-Пт с 8:00 до 17:00</p>
-						</div>
-					</li>
-					<li class="contacts__item">
-						<h5 class="contacts__item-title">E-mail</h5>
-						<span class="contacts__item-line"></span>
-						<div class="contacts__item-info">
-							<a href="#" class="contacts__item-link">info@oyyo-organic.ru</a>
-							<button class="btn contacts__item-btn">Написать письмо</button>
-						</div>
-					</li>
-					<li class="contacts__item">
-						<h5 class="contacts__item-title">Адрес</h5>
-						<span class="contacts__item-line"></span>
-						<div class="contacts__item-info">
-							<p class="contacts__item-content">г. Москва, <br> ул.Ветошный переулок, 9 ТЦ Никольский пассаж</p>
-						</div>
-					</li>
-				</ul>
 				<div id="contacts-map" data-center="[54.640994988119985,39.66810299999998]" data-zoom="15" class="contacts__map"></div>
 			</div>
-		</div>
+		</section>
+
 		<section class="requisites">
 			<div class="container">
 				<div class="section-head start">
 					<img src="img/logos/logo-red.svg" alt="logo" class="section-head__logo" />
-					<h2 class="title title-1 center__title">Реквезиты</h2>
+					<h2 class="title title-1 center__title">Реквизиты</h2>
 				</div>
 				<div class="requisites__body">
 					<ul class="list requisites__list">
@@ -407,7 +412,9 @@
 					<p class="footer__bottom-content">© 2023 OYYO Organic Energy. Все права защищены.</p>
 					<div class="footer__bottom-info">
 						<p class="footer__bottom-content">Разработка и продвижение</p>
-						<img src="img/logos/ice-marketing.svg" alt="ice-marketing" class="footer__bottom-img" />
+						<a href="#" target="_blank" class="footer__bottom-logo">
+							<img src="img/logos/ice-marketing.svg" alt="ice-marketing" class="footer__bottom-img" />
+						</a>
 					</div>
 				</div>
 			</div>
@@ -427,8 +434,8 @@
 			<button data-modal="call" class="btn btn-custom btn-modal btn-stroke mobile-menu__btn-call">Заказать звонок</button>
 		</div>
 	</div>
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU&_v=20240806133732" type="text/javascript"></script>
-	<script src="js/app.min.js?_v=20240806133732"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU&_v=20240808184129" type="text/javascript"></script>
+	<script src="js/app.min.js?_v=20240808184129"></script>
 </body>
 
 </html>

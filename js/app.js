@@ -321,41 +321,44 @@
     }
     function modal() {
         const buttonsModal = document.querySelectorAll(".btn-modal");
-        if (buttonsModal.length) {
-            buttonsModal.forEach((btn => {
-                btn.addEventListener("click", (e => {
-                    e.stopPropagation();
-                    const modalId = btn.dataset.modal;
-                    const currentModal = document.querySelector(`.modal[data-modal="${modalId}"]`);
-                    const modalWindow = currentModal.querySelector(".modal__window");
-                    const btnClose = currentModal.querySelector(".modal__close");
-                    modalTop(modalWindow);
-                    btnClose.addEventListener("click", handleClose);
-                    document.addEventListener("click", handleClose);
-                    modalWindow.addEventListener("click", (e => e.stopPropagation()));
-                    currentModal.classList.add("open");
-                    document.body.classList.add("body-hidden");
-                }));
+        if (buttonsModal.length) buttonsModal.forEach((btn => {
+            btn.addEventListener("click", (e => {
+                e.stopPropagation();
+                const modalId = btn.dataset.modal;
+                handleOpenModal(modalId);
             }));
-            function modalTop(modalWindow) {
-                const windowHeight = document.documentElement.clientHeight;
-                const modalHeight = modalWindow.clientHeight;
-                const offsetTop = (windowHeight - modalHeight) / 2;
-                const marginTop = offsetTop > 20 ? `${offsetTop}px` : "50px";
-                modalWindow.style.marginTop = marginTop;
-            }
-            function handleClose(e) {
-                let currentModal = e.target.closest(".modal");
-                if (!currentModal) currentModal = document.querySelector(".modal.open");
-                currentModal.classList.add("hide");
-                setTimeout((() => {
-                    document.body.classList.remove("body-hidden");
-                    currentModal.classList.remove("open");
-                    currentModal.classList.remove("hide");
-                }), 500);
-                return document.removeEventListener("click", handleClose);
-            }
-        }
+        }));
+    }
+    function handleOpenModal(modalId) {
+        const currentModalOpen = document.querySelector(".modal.open");
+        if (currentModalOpen) currentModalOpen.classList.remove("open");
+        const currentModal = document.querySelector(`.modal[data-modal="${modalId}"]`);
+        const modalWindow = currentModal.querySelector(".modal__window");
+        const btnClose = currentModal.querySelector(".modal__close");
+        modalTop(modalWindow);
+        btnClose.addEventListener("click", handleCloseModal);
+        document.addEventListener("click", handleCloseModal);
+        modalWindow.addEventListener("click", (e => e.stopPropagation()));
+        currentModal.classList.add("open");
+        document.body.classList.add("body-hidden");
+    }
+    function modalTop(modalWindow) {
+        const windowHeight = document.documentElement.clientHeight;
+        const modalHeight = modalWindow.clientHeight;
+        const offsetTop = (windowHeight - modalHeight) / 2;
+        const marginTop = offsetTop > 20 ? `${offsetTop}px` : "50px";
+        modalWindow.style.marginTop = marginTop;
+    }
+    function handleCloseModal(e) {
+        let currentModal = e.target.closest(".modal");
+        if (!currentModal) currentModal = document.querySelector(".modal.open");
+        currentModal.classList.add("hide");
+        setTimeout((() => {
+            document.body.classList.remove("body-hidden");
+            currentModal.classList.remove("open");
+            currentModal.classList.remove("hide");
+        }), 500);
+        return document.removeEventListener("click", handleCloseModal);
     }
     function map() {
         const contactsMap = document.querySelector("#contacts-map");
@@ -368,7 +371,7 @@
                     iconContent: "Это метка"
                 }, {
                     iconLayout: "default#image",
-                    iconImageHref: "../img/logos/icon-map.svg",
+                    iconImageHref: "./img/logos/icon-map.svg",
                     iconImageSize: [ 82, 105 ]
                 });
                 const map = new ymaps.Map("contacts-map", {
@@ -4137,16 +4140,16 @@
             new Swiper(".apply__slider", {
                 speed: 700,
                 modules: [ Autoplay ],
-                autoplay: true,
                 grabCursor: true,
                 slidesPerView: "auto",
+                slideToClickedSlide: true,
                 spaceBetween: 6,
                 breakpoints: {
-                    768: {
+                    1440: {
                         spaceBetween: 65
                     },
                     480: {
-                        spaceBetween: 40
+                        spaceBetween: 25
                     }
                 }
             });
@@ -4244,6 +4247,24 @@
             }
         }
     }
+    function smoothScroll() {
+        document.querySelectorAll(".anchor").forEach((link => {
+            link.addEventListener("click", (function(e) {
+                e.preventDefault();
+                let href = this.getAttribute("href").substring(1);
+                const scrollTarget = document.getElementById(href);
+                if (scrollTarget) {
+                    const offsetPosition = scrollTarget.getBoundingClientRect().top;
+                    window.scrollBy({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                    document.querySelector("#burger").classList.remove("open");
+                    document.body.classList.remove("body-hidden");
+                }
+            }));
+        }));
+    }
     isWebp();
     mediaAdaptive();
     spoller();
@@ -4254,4 +4275,5 @@
     moreDetail();
     tab();
     dropdown();
+    smoothScroll();
 })();
