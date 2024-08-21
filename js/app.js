@@ -4154,26 +4154,6 @@
                 }
             });
         }
-        const agronomySlider = document.querySelector(".agronomy__slider");
-        if (agronomySlider) {
-            new Swiper(".agronomy__slider", {
-                speed: 700,
-                modules: [ Autoplay, Navigation, Pagination ],
-                autoplay: true,
-                grabCursor: true,
-                navigation: {
-                    prevEl: ".slider-btn--prev.agronomy__btn-slider",
-                    nextEl: ".slider-btn--next.agronomy__btn-slider"
-                },
-                pagination: {
-                    el: ".agronomy__slider-pagination",
-                    type: "custom",
-                    renderCustom: function(swiper, current, total) {
-                        return `<span>0${current}</span> <span class="slider-nav__total">/0${total}</span>`;
-                    }
-                }
-            });
-        }
         const centerSlider = document.querySelector(".center__slider");
         if (centerSlider) {
             new Swiper(".center__slider", {

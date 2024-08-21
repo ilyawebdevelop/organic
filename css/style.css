@@ -545,7 +545,8 @@ body {
   align-items: start
 }
 .section-head__logo {
-  width: 130px
+  width: 130px;
+  border-right: 1px solid var(--red)
 }
 .section-head__btn {
   font-family: RoadRadio,sans-serif;
@@ -658,7 +659,17 @@ body {
   margin-top: 25px
 }
 .btn-download {
-  background: url(../img/decor/catalog.svg) 0 0/100% 100% no-repeat
+  position: relative;
+  z-index: 1
+}
+.btn-download::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: url(../img/decor/catalog.svg) 0 0/100% 100% no-repeat;
+  z-index: -1;
+  -webkit-animation: rotate 10s linear infinite;
+  animation: rotate 10s linear infinite
 }
 .btn-download span {
   display: block;
@@ -700,6 +711,26 @@ body {
   height: 28px;
   color: var(--red);
   transition: color .2s ease
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
 }
 .slider-btn {
   width: 52px;
@@ -1471,6 +1502,9 @@ body {
 .news__item:nth-child(3) {
   grid-area: 1/6/3/10
 }
+.news__item:nth-child(3) .news__item-logo {
+  border-left: 1px solid currentColor
+}
 .news__item:nth-child(3) .news__item-content {
   margin-top: 145px;
   font-size: 22px;
@@ -1637,7 +1671,8 @@ body {
   width: 105px;
   height: 60px;
   -webkit-transform: rotate(90deg);
-  transform: rotate(90deg)
+  transform: rotate(90deg);
+  border-right: 1px solid var(--red)
 }
 .about__catalog-btn {
   position: absolute;
@@ -1653,10 +1688,13 @@ body {
 }
 .discount__mail {
   position: absolute;
-  width: 655px;
-  right: 235px;
-  top: -86px;
+  width: 510px;
+  right: 350px;
+  top: 0;
   z-index: -1
+}
+.discount__mail--mobile {
+  display: none
 }
 .discount__logo {
   position: absolute;
@@ -1716,28 +1754,24 @@ body {
 }
 .contacts__item-link {
   display: block;
-  font-weight: 300;
   font-size: 20px;
   margin-bottom: 7px;
   color: var(--light-black);
   transition: color .2s ease
 }
 .contacts__item-btn {
-  font-weight: 300;
   font-size: 16px;
   text-decoration: underline;
   color: var(--red);
-  text-align: start
+  text-align: right
 }
 .contacts__item-content {
   margin: 0;
-  font-weight: 300;
   font-size: 16px;
   color: var(--light-black)
 }
 .contacts__item-content-address {
   margin: 0;
-  font-weight: 300;
   font-size: 20px;
   line-height: 140%;
   color: var(--light-black)
@@ -2192,6 +2226,16 @@ body {
   line-height: 129%;
   max-width: 390px
 }
+.download__btn::before {
+  background: url(../img/decor/download-product-btn.svg) 0 0/100% 100% no-repeat
+}
+.download__btn .btn-download__wrapper {
+  width: 200px;
+  height: 200px
+}
+.download__btn .btn-download__wrapper::before {
+  inset: 40px
+}
 .technology {
   padding: 105px 0
 }
@@ -2209,7 +2253,7 @@ body {
 .technology__tab-content {
   margin: 0;
   font-size: 16px;
-  line-height: 200%;
+  line-height: 162%;
   max-width: 780px
 }
 .technology__tab-content--bottom {
@@ -2307,7 +2351,7 @@ body {
   position: absolute;
   content: "";
   inset: 0;
-  background: url(../img/decor/mask-plant.svg) 0 0/cover no-repeat;
+  background: url(../img/decor/mask-plant.svg) left 0 top 0/1920px 990px no-repeat;
   z-index: -3
 }
 .plant::after {
@@ -2316,6 +2360,14 @@ body {
   inset: 0;
   background-color: rgba(196,0,0,.6);
   z-index: -2
+}
+.plant__decor {
+  position: absolute;
+  width: 320px;
+  height: 100%;
+  left: calc(50% - 160px);
+  top: 0;
+  z-index: -1
 }
 .plant__container {
   max-width: 1240px
@@ -2399,12 +2451,10 @@ body {
   line-height: 160%;
   margin: 0
 }
-.agronomy__slider {
-  margin-top: 55px;
-  max-width: 1300px
-}
 .agronomy__map {
-  width: 100%
+  display: block;
+  width: 100%;
+  margin-top: 55px
 }
 .agronomy__list {
   display: flex;
@@ -2439,7 +2489,8 @@ body {
 }
 .apply-rec__tab-nav {
   overflow-y: auto;
-  white-space: nowrap
+  white-space: nowrap;
+  -webkit-overflow-scrolling: auto!important
 }
 .apply-rec__tab-nav::-webkit-scrollbar {
   height: 2px;
@@ -2744,6 +2795,12 @@ body {
   bottom: 22px;
   right: 130px
 }
+.trend__humic-elements span {
+  display: inline-block;
+  font-size: 10px;
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px)
+}
 .trend__humic-bottom-content {
   max-width: 520px;
   font-size: 16px;
@@ -2818,10 +2875,17 @@ body {
 }
 .trend__fulvic-elements-content {
   display: block;
+  font-weight: 300;
   opacity: .2;
   font-size: 76px;
   color: #fff;
   line-height: 100%
+}
+.trend__fulvic-elements-content span {
+  display: inline-block;
+  font-size: 40px;
+  -webkit-transform: translateX(-20px);
+  transform: translateX(-20px)
 }
 .trend__fulvic-atom {
   position: absolute;
@@ -3055,7 +3119,8 @@ body {
 }
 .news-catalog__buttons {
   display: flex;
-  gap: 24px
+  gap: 24px;
+  -webkit-overflow-scrolling: auto!important
 }
 .news-catalog__buttons::-webkit-scrollbar {
   height: 2px;
@@ -3928,9 +3993,19 @@ body {
     transform: rotate(360deg)
   }
 }
+@media (max-width:1799px) {
+  .useful__decor {
+    width: 400px
+  }
+}
 @media (max-width:1699px) {
   .quality__img {
     right: 50px
+  }
+}
+@media (max-width:1625px) {
+  .feedback__decor {
+    right: 80px
   }
 }
 @media (max-width:1535px) {
@@ -4000,8 +4075,7 @@ body {
     margin-top: 25px!important
   }
   .feedback__decor {
-    width: 390px;
-    right: 80px
+    width: 390px
   }
   .about__content {
     max-width: 700px
@@ -4136,6 +4210,9 @@ body {
   }
   .useful {
     padding-bottom: 690px
+  }
+  .useful__decor {
+    width: 550px
   }
   .advantages-products__list {
     flex-wrap: wrap;
@@ -4413,6 +4490,9 @@ body {
   }
   .trend__fulvic-elements-content {
     font-size: 54px
+  }
+  .trend__fulvic-elements-content span {
+    font-size: 36px
   }
   .hero-about__title {
     font-size: 58px
@@ -4719,6 +4799,13 @@ body {
   .download__title {
     font-size: 36px;
     max-width: none
+  }
+  .download__btn .btn-download__wrapper {
+    width: 130px;
+    height: 130px
+  }
+  .download__btn .btn-download__wrapper::before {
+    inset: 27px
   }
   .technology__tab-bottom {
     margin-top: 60px
@@ -5203,7 +5290,7 @@ body {
     background-position: top 47px left -159px
   }
   .feedback::before {
-    background: linear-gradient(0deg,#d00000 52.79%,rgba(235,1,2,.33) 66.02%,#ce0002 97.1%)
+    background: linear-gradient(0deg,#d00000 52.79%,rgba(235,1,2,.6) 66.02%,#ce0002 97.1%)
   }
   .feedback__decor {
     width: 290px;
@@ -5251,7 +5338,7 @@ body {
     max-width: 230px
   }
   .about__catalog-logo {
-    gap: 10px;
+    gap: 15px;
     left: 6px;
     bottom: 7px
   }
@@ -5266,10 +5353,14 @@ body {
     padding: 30px 0
   }
   .discount__mail {
+    display: none;
     top: auto;
     bottom: 120px;
     right: auto;
     width: 370px
+  }
+  .discount__mail--mobile {
+    display: block
   }
   .discount__logo {
     width: 825px;
@@ -5395,6 +5486,13 @@ body {
     font-size: 32px;
     line-height: 100%
   }
+  .download__btn .btn-download__wrapper {
+    width: 110px;
+    height: 110px
+  }
+  .download__btn .btn-download__wrapper::before {
+    inset: 20px
+  }
   .technology {
     padding: 50px 0
   }
@@ -5429,6 +5527,10 @@ body {
   .plant {
     padding: 40px 0 30px 0
   }
+  .plant__decor {
+    width: 160px;
+    left: calc(50% - 80px)
+  }
   .plant__item {
     max-width: 160px
   }
@@ -5443,7 +5545,7 @@ body {
     font-size: 16px;
     line-height: 150%
   }
-  .agronomy__slider {
+  .agronomy__map {
     margin-top: 35px
   }
   .agronomy__list-item {
@@ -5531,6 +5633,11 @@ body {
   .trend__fulvic-elements-content {
     font-size: 32px;
     line-height: 87%
+  }
+  .trend__fulvic-elements-content span {
+    font-size: 18px;
+    -webkit-transform: translateX(-9px);
+    transform: translateX(-9px)
   }
   .trend__fulvic-img {
     width: calc(100% - 50px)
@@ -5857,8 +5964,9 @@ body {
 }
 @media (max-width:479px) {
   .modal__window-decor {
-    width: 175px;
-    top: -70px
+    width: 160px;
+    top: -85px;
+    right: -15px
   }
   .title-1 {
     font-size: 26px
@@ -5884,6 +5992,9 @@ body {
   }
   .breadcrumbs {
     max-width: 315px
+  }
+  .breadcrumbs__item {
+    opacity: .6
   }
   .btn-download span {
     font-size: 6px;
@@ -5954,8 +6065,8 @@ body {
   .rec-products__product-status {
     font-size: 12px;
     letter-spacing: .22em;
-    top: 85px;
-    left: -15px
+    top: 70px;
+    left: 12px
   }
   .rec-products__product-images {
     display: block
@@ -6034,6 +6145,10 @@ body {
     font-size: 14px;
     line-height: 100%;
     max-width: 185px
+  }
+  .download__btn .btn-download__wrapper {
+    width: 95px;
+    height: 95px
   }
   .technology__bottom-img {
     height: 150px;
